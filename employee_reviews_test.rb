@@ -103,11 +103,23 @@ class EmployeeReview < Minitest::Test
   end
 
   def test_give_dept_raise
-    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
     logistics = Department.new("Logistics")
 
     assert logistics.give_raise(10000)
+  end
+
+  def test_employee_in_dept_raise
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
+    dave.positive_review?(true)
+    karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
+    karl.positive_review?(false)
+    logistics = Department.new("Logistics")
+    logistics.add_employee(karl)
+    logistics.add_employee(dave)
+    logistics.give_raise(10000)
+
+    assert_equal 80000, dave.salary
+    assert_equal 50000, karl.salary
   end
 
 end
