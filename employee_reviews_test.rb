@@ -113,13 +113,23 @@ class EmployeeReview < Minitest::Test
     dave.positive_review?(true)
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
     karl.positive_review?(false)
+    mark = Employee.new(name: "Mark", email: "mark@mark.com", phone: "545-444-5555", salary: 30000)
+    mark.positive_review?(true)
     logistics = Department.new("Logistics")
     logistics.add_employee(karl)
     logistics.add_employee(dave)
+    logistics.add_employee(mark)
     logistics.give_raise(10000)
 
-    assert_equal 80000, dave.salary
+    assert_equal 75000, dave.salary
     assert_equal 50000, karl.salary
+    assert_equal 35000, mark.salary
+  end
+
+  def test_department_total_increase
+    logistics = Department.new("Logistics")
+    logistics.give_raise(10000)
+    assert_equal logistics.salary = 10000
   end
 
 end
