@@ -77,7 +77,7 @@ class EmployeeReview < Minitest::Test
     assert "Dave is a bad worker", dave.review_text
   end
 
-  def test_employee_review_satsifactory
+  def test_employee_review_satisifactory
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
     dave.positive_review?(true)
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
@@ -86,6 +86,23 @@ class EmployeeReview < Minitest::Test
     assert dave.review
     refute karl.review
   end
+
+  def test_give_raise
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
+    assert dave.give_raise(5000)
+  end
+
+  def test_decide_raise
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
+    dave.positive_review?(true)
+    karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
+    karl.positive_review?(false)
+
+    assert dave.give_raise(5000)
+    refute karl.give_raise(200)
+  end
+
+
 
 
 end
