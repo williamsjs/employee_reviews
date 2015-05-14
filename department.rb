@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class Department
   attr_reader :name, :employees, :total_salary
 
@@ -13,6 +15,7 @@ class Department
   end
 
   def give_raise(amount)
+    amount = amount[1..-1].to_f
     @total_salary += amount
     emp_getting_raise = 0
     @employees.each do |e|

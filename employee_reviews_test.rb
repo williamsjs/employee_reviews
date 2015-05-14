@@ -105,7 +105,7 @@ class EmployeeReview < Minitest::Test
   def test_give_dept_raise
     logistics = Department.new("Logistics")
 
-    assert logistics.give_raise(10000)
+    assert logistics.give_raise("$10000")
   end
 
   def test_employee_in_dept_raise
@@ -119,17 +119,11 @@ class EmployeeReview < Minitest::Test
     logistics.add_employee(karl)
     logistics.add_employee(dave)
     logistics.add_employee(mark)
-    logistics.give_raise(10000)
+    logistics.give_raise("$10000.24")
 
-    assert_equal 75000, dave.salary
-    assert_equal 50000, karl.salary
-    assert_equal 35000, mark.salary
-  end
-
-  def test_department_total_increase
-    logistics = Department.new("Logistics")
-    logistics.give_raise(10000)
-    assert_equal logistics.salary = 10000
+    assert_in_delta 75000.12, dave.salary, 0.01
+    assert_in_delta 50000, karl.salary, 0.01
+    assert_in_delta 35000.12, mark.salary, 0.01
   end
 
 end

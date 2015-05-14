@@ -14,4 +14,4 @@ logistics.add_employee(karl)
 logistics.add_employee(dave)
 logistics.add_employee(mark)
 
-logistics.give_raise(10000)
+logistics.give_raise("$10000")
