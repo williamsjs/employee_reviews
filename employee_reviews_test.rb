@@ -126,4 +126,12 @@ class EmployeeReview < Minitest::Test
     assert_in_delta 35000.12, mark.salary, 0.01
   end
 
+  # def test_email_validation
+  #   dave = Employee.new(name: "Dave", email: "dave@dave.co", phone: "336-336-3636", salary: 70000)
+  #   karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
+  #
+  #   assert dave
+  #   refute karl
+  # end
+
 end
