@@ -102,7 +102,12 @@ class EmployeeReview < Minitest::Test
     refute karl.give_raise(200)
   end
 
+  def test_give_dept_raise
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
+    karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
+    logistics = Department.new("Logistics")
 
-
+    assert logistics.give_raise(10000)
+  end
 
 end

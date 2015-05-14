@@ -12,4 +12,8 @@ class Department
     @total_salary += employee_object.salary
   end
 
+  def give_raise(amount)
+    true
+  end
+
 end
