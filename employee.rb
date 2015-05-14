@@ -11,11 +11,11 @@ class Employee
   end
 
   def add_review(review_text)
-    review_text += review_text if review_text.class == String
+    @review_text += review_text if review_text.class == String
   end
 
   def positive_review?(bool)
-    review = bool
+    @review = bool
   end
 
 end
