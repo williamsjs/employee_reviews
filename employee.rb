@@ -3,9 +3,8 @@ class Employee
 
   def initialize(name:, email:, phone:, salary:)
     @email = email if email =~ /[a-z1-9]+@[a-z1-9]+\.[a-z][a-z][a-z]/
-    # @phone = phone if phone =~ /
+    @phone = phone if phone =~ /(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4}/
     @name = name
-    @phone = phone
     @salary = salary.to_f
     @review_text = ""
     @review = ""

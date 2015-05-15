@@ -1,4 +1,3 @@
-require 'bigdecimal'
 
 class Department
   attr_reader :name, :employees, :total_salary

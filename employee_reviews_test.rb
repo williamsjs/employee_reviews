@@ -136,11 +136,13 @@ class EmployeeReview < Minitest::Test
     assert_equal nil, mark.email
 
   end
-  
-  def test_phone_validation
-    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    karl = Employee.new(name: "karl", email: "karl@karl.om", phone: "545-454-5555", salary: 50000)
 
+  def test_phone_validation
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "444-333-33d333", salary: 70000)
+    karl = Employee.new(name: "karl", email: "karl@karl.om", phone: "545-454-5555", salary: 50000)
+    mark = Employee.new(name: "Mark", email: "markmark.com", phone: "545-4434-5555", salary: 30000)
+
+    assert_equal nil, mark.phone
     assert_equal nil, dave.phone
     assert_equal "545-454-5555", karl.phone
   end
