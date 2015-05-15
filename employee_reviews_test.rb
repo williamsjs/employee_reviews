@@ -98,26 +98,26 @@ class EmployeeReview < Minitest::Test
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
     karl.positive_review?(false)
 
-    assert dave.give_raise(5000)
+    assert dave.give_raise(5000.82)
     refute karl.give_raise(200)
   end
 
   def test_give_dept_raise
     logistics = Department.new("Logistics")
 
-    refute logistics.give_raise("$10000")
+    refute logistics.give_raise(10000)
 
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
     dave.positive_review?(false)
     logistics.add_employee(dave)
 
-    refute logistics.give_raise("$100.02")
+    refute logistics.give_raise(100.02)
 
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
     karl.positive_review?(true)
     logistics.add_employee(karl)
 
-    assert logistics.give_raise("$100.02")
+    assert logistics.give_raise(100.02)
 
   end
 
@@ -132,7 +132,7 @@ class EmployeeReview < Minitest::Test
     logistics.add_employee(karl)
     logistics.add_employee(dave)
     logistics.add_employee(mark)
-    logistics.give_raise("$10000.24")
+    logistics.give_raise(10000.24)
 
     assert_in_delta 75000.12, dave.salary, 0.01
     assert_in_delta 50000, karl.salary, 0.01
@@ -175,7 +175,7 @@ class EmployeeReview < Minitest::Test
     karl.positive_review?(false)
     mark.positive_review?(true)
 
-    customer_service.give_raise("$1000.82")
+    customer_service.give_raise(1000.82)
 
     assert_in_delta 31000.82, mark.salary, 0.01
     assert_in_delta 50000.00, karl.salary, 0.01
@@ -202,12 +202,25 @@ class EmployeeReview < Minitest::Test
     logistics.add_employee(dave)
     logistics.add_employee(mark)
 
-    logistics.give_raise("$5132.55") do |employee|
+    logistics.give_raise(5132.55) do |employee|
       employee.salary < 50000
     end
 
     assert_in_delta 35132.55, mark.salary, 0.01
+    assert_in_delta 50000, karl.salary, 0.01
+  end
 
+  def test_raise_without_restriction
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
+    dave.positive_review?(true)
+    karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
+    karl.positive_review?(false)
+
+    dave.give_raise_without_restriction(100.87)
+    karl.give_raise_without_restriction(188.12)
+
+    assert_in_delta 70100.87, dave.salary, 0.01
+    assert_in_delta 50188.12, karl.salary, 0.01
 
   end
 

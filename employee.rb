@@ -1,5 +1,5 @@
 class Employee
-  attr_reader :name, :email, :phone, :salary, :review_text, :review
+  attr_reader :name, :email, :phone, :salary, :review_text, :review, :eligible
 
   def initialize(name:, email:, phone:, salary:)
     @email = email if email =~ /[a-z1-9]+@[a-z1-9]+\.[a-z][a-z][a-z]/
@@ -19,7 +19,11 @@ class Employee
   end
 
   def give_raise(amount)
-    @salary += amount.to_f if @review
+    @salary += amount if @review
+  end
+
+  def give_raise_without_restriction(amount)
+    @salary += amount
   end
 
 end
