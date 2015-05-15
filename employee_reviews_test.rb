@@ -147,4 +147,29 @@ class EmployeeReview < Minitest::Test
     assert_equal "545-454-5555", karl.phone
   end
 
+  def test_complete_example
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "444-333-33d333", salary: 70000)
+    karl = Employee.new(name: "karl", email: "karl@karl.om", phone: "545-454-5555", salary: 50000)
+    mark = Employee.new(name: "Mark", email: "markmark.com", phone: "545-4434-5555", salary: 30000)
+
+    logistics = Department.new("Logistics")
+    customer_service = Department.new("Customer Service")
+
+    logistics.add_employee(dave)
+
+    customer_service.add_employee(karl)
+    customer_service.add_employee(mark)
+    karl.positive_review?(false)
+    mark.positive_review?(true)
+
+    customer_service.give_raise("$1000.82")
+
+    assert_in_delta 31000.82, mark.salary, 0.01
+    assert_in_delta 50000.00, karl.salary, 0.01
+
+    assert_in_delta 81000.82, customer_service.total_salary, 0.01
+
+
+  end
+
 end
