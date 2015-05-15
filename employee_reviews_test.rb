@@ -169,6 +169,12 @@ class EmployeeReview < Minitest::Test
 
     assert_in_delta 81000.82, customer_service.total_salary, 0.01
 
+    joey = Employee.new(name: "joey", email: "joey@joe.net", phone: "444-333-3333", salary: 30000)
+
+    customer_service.add_employee(joey)
+
+    assert_in_delta 111000.82, customer_service.total_salary, 0.01
+    
 
   end
 
