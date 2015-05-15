@@ -14,7 +14,7 @@ class Employee
     @review_text += review_text if review_text.class == String
   end
 
-  def positive_review?(bool)
+  def positive_review(bool)
     @review = bool
   end
 
@@ -25,5 +25,13 @@ class Employee
   def give_raise_without_restriction(amount)
     @salary += amount
   end
+
+  private def parse_review
+    good_word = @review_text.scan(/good/)
+    bad_word = @review_text.scan(/bad/)
+
+
+  end
+
 
 end

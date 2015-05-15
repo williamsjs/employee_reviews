@@ -79,9 +79,9 @@ class EmployeeReview < Minitest::Test
 
   def test_employee_review_satisifactory
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    dave.positive_review?(true)
+    dave.positive_review(true)
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
-    karl.positive_review?(false)
+    karl.positive_review(false)
 
     assert dave.review
     refute karl.review
@@ -94,9 +94,9 @@ class EmployeeReview < Minitest::Test
 
   def test_decide_raise
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    dave.positive_review?(true)
+    dave.positive_review(true)
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
-    karl.positive_review?(false)
+    karl.positive_review(false)
 
     assert dave.give_raise(5000.82)
     refute karl.give_raise(200)
@@ -108,13 +108,13 @@ class EmployeeReview < Minitest::Test
     refute logistics.give_raise(10000)
 
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    dave.positive_review?(false)
+    dave.positive_review(false)
     logistics.add_employee(dave)
 
     refute logistics.give_raise(100.02)
 
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
-    karl.positive_review?(true)
+    karl.positive_review(true)
     logistics.add_employee(karl)
 
     assert logistics.give_raise(100.02)
@@ -123,11 +123,11 @@ class EmployeeReview < Minitest::Test
 
   def test_employee_in_dept_raise
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    dave.positive_review?(true)
+    dave.positive_review(true)
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
-    karl.positive_review?(false)
+    karl.positive_review(false)
     mark = Employee.new(name: "Mark", email: "mark@mark.com", phone: "545-444-5555", salary: 30000)
-    mark.positive_review?(true)
+    mark.positive_review(true)
     logistics = Department.new("Logistics")
     logistics.add_employee(karl)
     logistics.add_employee(dave)
@@ -172,8 +172,8 @@ class EmployeeReview < Minitest::Test
 
     customer_service.add_employee(karl)
     customer_service.add_employee(mark)
-    karl.positive_review?(false)
-    mark.positive_review?(true)
+    karl.positive_review(false)
+    mark.positive_review(true)
 
     customer_service.give_raise(1000.82)
 
@@ -192,11 +192,11 @@ class EmployeeReview < Minitest::Test
 
   def test_dept_give_raise_with_block
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    dave.positive_review?(true)
+    dave.positive_review(true)
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
-    karl.positive_review?(false)
+    karl.positive_review(false)
     mark = Employee.new(name: "Mark", email: "mark@mark.com", phone: "545-444-5555", salary: 30000)
-    mark.positive_review?(true)
+    mark.positive_review(true)
     logistics = Department.new("Logistics")
     logistics.add_employee(karl)
     logistics.add_employee(dave)
@@ -212,9 +212,9 @@ class EmployeeReview < Minitest::Test
 
   def test_raise_without_restriction
     dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-    dave.positive_review?(true)
+    dave.positive_review(true)
     karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
-    karl.positive_review?(false)
+    karl.positive_review(false)
 
     dave.give_raise_without_restriction(100.87)
     karl.give_raise_without_restriction(188.12)
