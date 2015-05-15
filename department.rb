@@ -22,7 +22,7 @@ class Department
       emp_getting_raise += 1 if e.review
     end
     amount /= emp_getting_raise unless emp_getting_raise == 0
-    @employees.map {|e| e.give_raise(amount)}
+    @employees.each {|e| e.give_raise(amount)}
   end
 
 end

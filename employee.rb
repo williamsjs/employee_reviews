@@ -2,10 +2,15 @@ class Employee
   attr_reader :name, :email, :phone, :salary, :review_text, :review
 
   def initialize(name:, email:, phone:, salary:)
+    if email =~ /[a-z1-9]+@[a-z1-9]+\.[a-z][a-z][a-z]/
+      @email = email
+    else
+      email = nil
+    end
     @name = name
     @email = email
     @phone = phone
-    @salary = salary
+    @salary = salary.to_f
     @review_text = ""
     @review = ""
   end
@@ -19,7 +24,7 @@ class Employee
   end
 
   def give_raise(amount)
-    @salary += amount if @review
+    @salary += amount.to_f if @review
   end
 
 end
