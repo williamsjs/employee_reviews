@@ -2,13 +2,9 @@ class Employee
   attr_reader :name, :email, :phone, :salary, :review_text, :review
 
   def initialize(name:, email:, phone:, salary:)
-    if email =~ /[a-z1-9]+@[a-z1-9]+\.[a-z][a-z][a-z]/
-      @email = email
-    else
-      email = nil
-    end
+    @email = email if email =~ /[a-z1-9]+@[a-z1-9]+\.[a-z][a-z][a-z]/
+    # @phone = phone if phone =~ /
     @name = name
-    @email = email
     @phone = phone
     @salary = salary.to_f
     @review_text = ""
