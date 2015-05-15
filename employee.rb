@@ -7,7 +7,7 @@ class Employee
     @name = name
     @salary = salary.to_f
     @review_text = ""
-    @review = ""
+    @review = true
   end
 
   def add_review(review_text)

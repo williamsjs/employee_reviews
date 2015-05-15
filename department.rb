@@ -15,13 +15,13 @@ class Department
 
   def give_raise(amount)
     amount = amount[1..-1].to_f
-    @total_salary += amount
     emp_getting_raise = 0
     @employees.each do |e|
       emp_getting_raise += 1 if e.review
     end
-    amount /= emp_getting_raise unless emp_getting_raise == 0
-    @employees.each {|e| e.give_raise(amount)}
+    divided_amount = amount / emp_getting_raise unless emp_getting_raise == 0
+    @employees.each {|e| e.give_raise(divided_amount)}
+    @total_salary += amount if emp_getting_raise > 0
   end
 
 end

@@ -105,7 +105,20 @@ class EmployeeReview < Minitest::Test
   def test_give_dept_raise
     logistics = Department.new("Logistics")
 
-    assert logistics.give_raise("$10000")
+    refute logistics.give_raise("$10000")
+
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
+    dave.positive_review?(false)
+    logistics.add_employee(dave)
+
+    refute logistics.give_raise("$100.02")
+
+    karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
+    karl.positive_review?(true)
+    logistics.add_employee(karl)
+
+    assert logistics.give_raise("$100.02")
+
   end
 
   def test_employee_in_dept_raise
@@ -174,8 +187,30 @@ class EmployeeReview < Minitest::Test
     customer_service.add_employee(joey)
 
     assert_in_delta 111000.82, customer_service.total_salary, 0.01
-    
 
   end
+
+  def test_dept_give_raise_with_block
+    dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
+    dave.positive_review?(true)
+    karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
+    karl.positive_review?(false)
+    mark = Employee.new(name: "Mark", email: "mark@mark.com", phone: "545-444-5555", salary: 30000)
+    mark.positive_review?(true)
+    logistics = Department.new("Logistics")
+    logistics.add_employee(karl)
+    logistics.add_employee(dave)
+    logistics.add_employee(mark)
+
+    logistics.give_raise("$5132.55") do |employee|
+      employee.salary < 50000
+    end
+
+    assert_in_delta 35132.55, mark.salary, 0.01
+
+
+  end
+
+
 
 end
