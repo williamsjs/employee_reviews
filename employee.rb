@@ -1,5 +1,5 @@
 class Employee
-  attr_reader :name, :email, :phone, :salary, :review_text, :review, :eligible
+  attr_reader :name, :email, :phone, :salary, :review_text, :review, :review_based_on_text
 
   def initialize(name:, email:, phone:, salary:)
     @email = email if email =~ /[a-z1-9]+@[a-z1-9]+\.[a-z][a-z][a-z]/
@@ -13,7 +13,6 @@ class Employee
 
   def add_review(review_text)
     @review_text += review_text if review_text.class == String
-    parse_review
   end
 
   def positive_review(bool)
@@ -29,15 +28,22 @@ class Employee
   end
 
 
-  def private parse_review
-    bad_count = []
-    good_count = []
-    the_bad = [/hard/, /uneasy/, /horrible/, /negative/, /not/, /difficult/, /confusion/, /less/, /inadequate/, /tension/, /terrible/, /late/, /sloppy/, /lazy/, /inefficient/]
-    the_good = [/easy/, /nice/, /competent/, /efficient/, /team player/, /hard/, /clear/, /friendly/, /fantastic/, /joy/, /clean/, /timely/, /]
-    the_bad.each do |re|
-      @review_text.scan(re) << bad_count
+  def parse_review
+    the_bad = [/hard/, /uneasy/, /horrible/, /negative/, /not/, /difficult/, /confusion/, /less/, /inadequate/, /tension/, /terrible/, /late/, /sloppy/, /lazy/, /inefficient/, /unprofessional/, /but/]
+    the_good = [/easy/, /nice/, /competent/, /efficient/, /team player/, /hard/, /clear/, /friendly/, /fantastic/, /joy/, /clean/, /timely/, /professional/, /amazing/, /fantastic/]
+    the_bad_count = the_bad.each do |re|
+      @review_text.scan(re)
     end
-    puts bad_count
+    the_good_count = the_good.each do |re|
+      @review_text.scan(re)
+    end
+    puts the_bad_count
+    puts the_good_count
+    if the_bad_count.length > the_good_count.length_count
+      @review_based_on_text = false
+    else
+      @review_based_on_text = true
+    end
   end
 
 
