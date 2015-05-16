@@ -1,19 +1,39 @@
-require './employee.rb'
-require './department.rb'
+the_bad = [/hard/, /uneasy/, /horrible/, /negative/,
+            /not/, /difficult/, /confusion/, /less/,
+            /inadequate/, /tension/, /terrible/, /late/,
+            /sloppy/, /lazy/, /inefficient/,
+            /unprofessional/, /but/, /less/,
+            /consequences/, /abysmal/, /adverse/,
+            /apathetic/, /appaling/, /awfule/, /bad/,
+            /callous/, /confused/, /damag/,
+            /missing/, /lousy/, /fault/, /faulty/, /fail/,
+            /no/, /hostile/, /offense/, /offensive/,
+            /severe/, /sorry/, /stress/, /stressful/,
+            /vice/, /worthless/, /zero/, /un/, /pess/]
 
+the_good = [/Xavier/, /SciMed/, /pleasure/, /knocks/, /tasks/, /assigned/, /implements/, /easy/, /nice/, /competent/, /efficient/,
+            /team player/, /hard/, /clear/,
+            /friendly/, /fantastic/, /joy/, /clean/,
+            /timely/, /professional/, /amazing/,
+            /fantastic/, /consistent/, /satisfied/,
+            /effective/, /impressed/, /brilliant/,
+            /delight/, /delightful/, /distinguished/,
+            /energized/, /excellent/, /perfect/,
+            /plentiful/, /skilled/, /skillful/,
+            /willing/, /wonderful/, /weel/, /zealous/,
+            /merit/, /vital/, /valued/, /super/,
+            /superb/, /supporting/, /upbeat/,
+            /satisfactory/, /trusting/, /terrific/,
+            /thorough/, /quality/, /fabulout/,
+            /celebrated/, /commend/, /creative/,
+            /beneficial/, /benefit/, /lively/]
 
+text = "Xavier SciMed pleasure knocks blah blah blah"
 
-dave = Employee.new(name: "Dave", email: "dave@dave.com", phone: "336-336-3636", salary: 70000)
-dave.positive_review?(true)
-karl = Employee.new(name: "karl", email: "karl@karl.com", phone: "545-454-5555", salary: 50000)
-karl.positive_review?(false)
-mark = Employee.new(name: "Mark", email: "mark@mark.com", phone: "545-444-5555", salary: 30000)
-mark.positive_review?(true)
-logistics = Department.new("Logistics")
-logistics.add_employee(karl)
-logistics.add_employee(dave)
-logistics.add_employee(mark)
+the_good_count = []
 
-logistics.give_raise("$10000") do |employee|
-  employee.salary < 50000
+the_good.each do |re|
+  the_good_count << text[re] if !text[re].nil?
 end
+
+puts the_good_count
