@@ -59,8 +59,8 @@ class Employee
                 /vice/, /worthless/, /zero/, /un/, /pess/, /over/,
                 /under/, /less/]
 
-    the_ugly = [/extremely\sbad/, /very\sbad/, /un{1}/]
-    the_nice = [/extremely\sgood/, /very\sgood/, /out{1}/]
+    the_ugly = [/(extremely|very)\sbad/, /un+/]
+    the_nice = [/(extremely|very)\sgood/, /(very)\sgood/, /out+/]
 
     the_bad_count = []
     the_good_count = []
