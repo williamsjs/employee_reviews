@@ -34,9 +34,9 @@ class Employee
                 /sloppy/, /lazy/, /inefficient/,
                 /unprofessional/, /but/, /less/,
                 /consequences/, /abysmal/, /adverse/,
-                /apathetic/, /appaling/, /awfule/, /bad/,
+                /apathetic/, /appaling/, /awful/, /bad/,
                 /callous/, /confused/, /damag/, /in/,
-                /missing/, /lousy/, /fault/, /faulty/, /fail/,
+                /missing/, /lousy/, /fault/, /fail/,
                 /no/, /hostile/, /offense/, /offensive/,
                 /severe/, /sorry/, /stress/, /stressful/,
                 /vice/, /worthless/, /zero/, /un/, /pess/]
@@ -54,7 +54,7 @@ class Employee
                 /merit/, /vital/, /valued/, /super/,
                 /superb/, /supporting/, /upbeat/,
                 /satisfactory/, /trusting/, /terrific/,
-                /thorough/, /quality/, /fabulout/,
+                /thorough/, /quality/, /fabulous/,
                 /celebrated/, /commend/, /creative/,
                 /beneficial/, /benefit/, /lively/]
     the_bad_count = []
