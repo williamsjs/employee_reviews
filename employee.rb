@@ -28,19 +28,6 @@ class Employee
   end
 
   def parse_review
-    the_bad = [/hard/, /uneasy/, /horrible/, /negative/,
-                /not/, /difficult/, /confusion/, /less/,
-                /inadequate/, /tension/, /terrible/, /late/,
-                /sloppy/, /lazy/, /inefficient/,
-                /unprofessional/, /but/, /less/,
-                /consequences/, /abysmal/, /adverse/,
-                /apathetic/, /appaling/, /awful/, /bad/,
-                /callous/, /confused/, /damag/, /in/,
-                /missing/, /lousy/, /fault/, /fail/,
-                /no/, /hostile/, /offense/, /offensive/,
-                /severe/, /sorry/, /stress/, /stressful/,
-                /vice/, /worthless/, /zero/, /un/, /pess/]
-
     the_good = [/pleasure/, /implements/, /easy/, /nice/, /competent/, /efficient/,
                 /team player/, /hard/, /clear/,
                 /friendly/, /fantastic/, /joy/, /clean/,
@@ -57,6 +44,24 @@ class Employee
                 /thorough/, /quality/, /fabulous/,
                 /celebrated/, /commend/, /creative/,
                 /beneficial/, /benefit/, /lively/]
+
+    the_bad = [/hard/, /uneasy/, /horrible/, /negative/,
+                /not/, /difficult/, /confusion/, /less/,
+                /inadequate/, /tension/, /terrible/, /late/,
+                /sloppy/, /lazy/, /inefficient/,
+                /unprofessional/, /but/, /less/,
+                /consequences/, /abysmal/, /adverse/,
+                /apathetic/, /appaling/, /awful/, /bad/,
+                /callous/, /confused/, /damag/, /in/,
+                /missing/, /lousy/, /fault/, /fail/,
+                /no/, /hostile/, /offense/, /offensive/,
+                /severe/, /sorry/, /stress/, /stressful/,
+                /vice/, /worthless/, /zero/, /un/, /pess/, /over/,
+                /under/, /less/]
+
+    the_ugly = [/extremely\sbad/, /very\sbad/, /un{1}/]
+    the_nice = [/extremely\sgood/, /very\sgood/, /out{1}/]
+
     the_bad_count = []
     the_good_count = []
 
@@ -65,6 +70,14 @@ class Employee
     end
 
     the_good.each do |re|
+      the_good_count << @review_text[re] if !@review_text[re].nil?
+    end
+
+    the_ugly.each do |re|
+      the_bad_count << @review_text[re] if !@review_text[re].nil?
+    end
+
+    the_nice.each do |re|
       the_good_count << @review_text[re] if !@review_text[re].nil?
     end
 
