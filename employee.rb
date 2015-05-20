@@ -1,30 +1,23 @@
-class Employee
-  attr_reader :name, :email, :phone, :salary, :review_text, :review, :review_based_on_text
+require './db_setup.rb'
 
-  def initialize(name:, email:, phone:, salary:)
-    @email = email if email =~ /[a-z1-9]+@[a-z1-9]+\.[a-z][a-z][a-z]/
-    @phone = phone if phone =~ /(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4}/
-    @name = name
-    @salary = salary.to_f
-    @review_text = ""
-    @review = true
-    @review_based_on_text = ""
-  end
+
+class Employee <ActiveRecord::Base
+  belongs_to :department
 
   def add_review(review_text)
-    @review_text += review_text if review_text.class == String
+    self.review_text = review_text if review_text.class == String
   end
 
   def positive_review(bool)
-    @review = bool
+    self.review = bool
   end
 
   def give_raise(amount)
-    @salary += amount if @review
+    self.salary += amount if self.review
   end
 
   def give_raise_without_restriction(amount)
-    @salary += amount
+    self.salary += amount
   end
 
   def parse_review
@@ -66,25 +59,25 @@ class Employee
     the_good_count = []
 
     the_bad.each do |re|
-      the_bad_count << @review_text[re] if !@review_text[re].nil?
+      the_bad_count << self.review_text[re] if !self.review_text[re].nil?
     end
 
     the_good.each do |re|
-      the_good_count << @review_text[re] if !@review_text[re].nil?
+      the_good_count << self.review_text[re] if !self.review_text[re].nil?
     end
 
     the_ugly.each do |re|
-      the_bad_count << @review_text[re] if !@review_text[re].nil?
+      the_bad_count << self.review_text[re] if !self.review_text[re].nil?
     end
 
     the_nice.each do |re|
-      the_good_count << @review_text[re] if !@review_text[re].nil?
+      the_good_count << self.review_text[re] if !self.review_text[re].nil?
     end
 
     if the_bad_count.length > the_good_count.length
-      @review_based_on_text = false
+      self.review_based_on_text = false
     else
-      @review_based_on_text = true
+      self.review_based_on_text = true
     end
 
   end
